@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h1>Manager page</h1>
+<h1>Access denied</h1>
   </div>
 </template>
 

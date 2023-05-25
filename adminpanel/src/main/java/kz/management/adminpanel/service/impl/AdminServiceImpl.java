@@ -23,6 +23,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void createUser(RegisterRequest request) {
         User user = new User();
+
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());

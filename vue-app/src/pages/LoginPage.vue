@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div>
+<!--      <h1>{{$store.getters['auth_data/isAuthenticated']}}</h1>-->
       <h1>{{message}}</h1>
     </div>
     <button @click="getHello">Press</button>
@@ -28,6 +29,7 @@
 import useVuelidate from '@vuelidate/core'
 import { required, email,maxLength,minLength,helpers} from '@vuelidate/validators'
 import axios from "axios";
+import router from "@/router/router";
 export default {
   setup () {
     return { v$: useVuelidate() }
@@ -36,6 +38,7 @@ export default {
     return{
       message:null,
       LoginURL:'http://localhost:8081/api/auth/login',
+      UserInfoURL:'http://localhost:8081/info',
       User:{
         email:'',
         password:''
@@ -59,17 +62,57 @@ export default {
       if (!isFormCorrect) return
 
       this.isInvalid = true;
-      const login = axios.post(this.LoginURL, this.User, {
+      const login = await axios.post(this.LoginURL, this.User, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
           .then(response => {
             localStorage.setItem('token', response.data.token);
+            console.log("success")
+            //this.$store.commit('auth_data/setJwtToken',response.data.token);
+            //this.$store.state.auth_data.authHeaders
+            //this.$store.commit('auth_data/setUser',);
+            this.getUserData();
           })
           .catch(error => {
             console.log(error);
           })
+    },
+
+    async getUserData(){
+      const userInfo = await axios.get(this.UserInfoURL,{
+        headers:{
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      })
+          .then(response => {
+            console.log(response.data);
+            console.log(response.data.role)
+            this.$store.commit("auth_data/setUser",response.data);
+            console.log(this.$store.state.auth_data.user);
+            let userRole = this.$store.state.auth_data.user.role;
+            if(userRole === "ADMIN"){
+              router.push('/admin');
+            }
+            else if(userRole === "USER"){
+              router.push('/user')
+            }
+            else if(userRole === "DEV"){
+              router.push('/dev')
+            }
+            else if(userRole === "MANAGER"){
+              router.push('/manager')
+            }
+          })
+          .catch(error =>{
+            console.log(error);
+          })
+    }
+  },
+  computed:{
+    myGetter() {
+      return this.$store.getters['myModule/getData'];
     }
   },
   validations(){
