@@ -1,14 +1,15 @@
 package kz.management.adminpanel.service.impl;
 
 import kz.management.adminpanel.model.User;
-import kz.management.adminpanel.model.enums.Role;
 import kz.management.adminpanel.repo.UserRepository;
 import kz.management.adminpanel.security.RegisterRequest;
 import kz.management.adminpanel.service.intf.AdminService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
     private final UserRepository userRepository;
