@@ -8,4 +8,7 @@ import java.util.List;
 public interface AdminService {
     void createUser(RegisterRequest request);
     List<User> getAllUsers();
+
+    void deleteAccount();
+    void updateAccount();
 }

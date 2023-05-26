@@ -148,7 +148,7 @@ export default {
 
 .container__login{
   display: flex;
-  width: 90%;
+  width: 30%;
   padding:20px;
   border: 2px solid #0e0b54;
   border-radius: 20px;
@@ -176,8 +176,8 @@ export default {
   border: 2px solid #565454;
   border-radius: 20px;
   padding:5px 10px;
-  width:250px;
-  margin:10px auto 0;
+  width:90%;
+  margin:3px auto 0;
   font-size: 14px;
   font-family: 'Ubuntu', sans-serif;
   font-weight:700;

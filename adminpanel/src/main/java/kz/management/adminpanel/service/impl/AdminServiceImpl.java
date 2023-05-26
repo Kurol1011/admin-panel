@@ -37,4 +37,14 @@ public class AdminServiceImpl implements AdminService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void deleteAccount() {
+
+    }
+
+    @Override
+    public void updateAccount() {
+
+    }
 }

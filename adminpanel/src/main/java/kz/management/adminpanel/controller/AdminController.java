@@ -31,4 +31,7 @@ public class AdminController {
     public List<User> getAllUsers(){
         return adminService.getAllUsers();
     }
+
+
+
 }
