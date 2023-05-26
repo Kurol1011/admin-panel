@@ -26,6 +26,7 @@ public class AdminServiceImpl implements AdminService {
 
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
+        user.setDateOfBirth(request.getDateOfBirth());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());

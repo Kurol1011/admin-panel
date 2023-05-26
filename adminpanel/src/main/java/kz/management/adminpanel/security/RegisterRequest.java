@@ -2,9 +2,13 @@ package kz.management.adminpanel.security;
 
 import kz.management.adminpanel.model.enums.Role;
 
+import java.util.Date;
+
 public class RegisterRequest {
     private String firstName;
     private String lastName;
+
+    private Date dateOfBirth;
     private String email;
     private String password;
 
@@ -13,9 +17,10 @@ public class RegisterRequest {
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String firstName, String lastName, String email, String password, Role role) {
+    public RegisterRequest(String firstName, String lastName, Date dateOfBirth, String email, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -59,5 +64,13 @@ public class RegisterRequest {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

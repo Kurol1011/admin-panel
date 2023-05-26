@@ -3,13 +3,17 @@
     <h1 class="part__register">Register</h1>
     <div class="container__register">
       <form @submit.prevent="sendRegisterRequest()" class="register__form__container">
-        <label for="firstName" class="register__label">Name:</label>
+        <label for="firstName" class="register__label">First name:</label>
         <input type="text" class="register__input" v-model="userRegister.firstName"/>
         <div v-for="error in v$.userRegister.firstName.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
-        <label for="lastName" class="register__label">Surname:</label>
+        <label for="lastName" class="register__label">Last name:</label>
         <input type="text" class="register__input" v-model="userRegister.lastName">
         <div v-for="error in v$.userRegister.lastName.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
+
+        <label for="lastName" class="register__label">Date Of birth:</label>
+        <input type="date" class="register__input" v-model="userRegister.dateOfBirth">
+        <div v-for="error in v$.userRegister.dateOfBirth.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
         <label for="email" class="register__label">Email:</label>
         <input type="text" class="register__input" v-model="userRegister.email">
@@ -19,8 +23,15 @@
         <input type="password" class="register__input" v-model="userRegister.password">
         <div v-for="error in v$.userRegister.password.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
+<!--        <input type="text" class="register__input" v-model="userRegister.role">-->
         <label for="password" class="register__label">Role:</label>
-        <input type="text" class="register__input" v-model="userRegister.role">
+        <select class="register__input" v-model="userRegister.role">
+          <option
+              v-for="item in items"
+              :value="item"
+              :text="item"
+          ></option>
+        </select>
 
         <button class="btn__auth" >Register</button>
       </form>
@@ -39,7 +50,10 @@ import axios from "axios";
 
 export default {
   setup () {
-    return { v$: useVuelidate() }
+    return {
+      v$: useVuelidate(),
+      items: ['USER','ADMIN','DEVELOPER','MANAGER'],
+    }
   },
   data() {
     return {
@@ -48,6 +62,7 @@ export default {
       userRegister:{
         firstName:'',
         lastName:'',
+        dateOfBirth:'',
         email:'',
         password:'',
         role:''
@@ -66,6 +81,11 @@ export default {
         lastName:{
           required:helpers.withMessage("Please enter your surname",required),
           firstNameLastNameFormat:helpers.withMessage("The surname must contain only letters and must start with a capital letter ",helpers.regex(/\b[A-Z][a-z]+\b/)),
+        },
+        dateOfBirth:{
+          required:helpers.withMessage("Please date fill date of birth",required),
+          //date: helpers.withMessage('Invalid date format', date),
+          //dateOfBirthFormat:helpers.withMessage("The date should be on next format ",helpers.regex(/\b[A-Z][a-z]+\b/)),
         },
         email:{
           required:helpers.withMessage("Please enter your email",required),
@@ -88,7 +108,6 @@ export default {
       // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
       if (!isFormCorrect) return
       // actually submit form
-
       axios.post(this.registerApiUrl, this.userRegister,{
         headers: {
           //this.$store.state.auth_data.authHeaders
