@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         return userDTO;
     }
 
-    @Override //todo realize
+    @Override
     public Respondent convertToRespondent(RespondentDTO respondentDTO) {
         Respondent respondent = new Respondent();
         respondent.setFullName(getCurrentUser().getFirstName() + " " + getCurrentUser().getLastName());

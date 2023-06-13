@@ -1,12 +1,11 @@
 <template>
   <div>
-    <table class="table__users">
+    <table class="table__respondents">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Date of birth</th>
-        <th>Email</th>
-        <th>Role</th>
+        <th>Full name</th>
+        <th>Number of computers</th>
+        <th>Number of employees</th>
+        <th>Date</th>
       </tr>
       <table-item
           v-for="userItem in users"
@@ -18,11 +17,11 @@
 </template>
 
 <script>
-import tableUserItem from "@/components/TableUserItem";
+import TableRespondentItem from "@/components/TableRespondentItem";
 export default {
-  components: {tableUserItem},
+  components: {TableRespondentItem},
   props:{
-    users:{
+    respondents:{
       type:Array,
       required:true
     }
@@ -32,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.table__users{
+.table__respondents{
   border: 2px solid black ;
   width: 800px;
   margin: 0 auto;
