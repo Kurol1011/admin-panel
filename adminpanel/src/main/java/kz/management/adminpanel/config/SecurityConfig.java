@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/register","/create-user","/users").hasAuthority("ADMIN")
+                .requestMatchers("/create-user","/users","/api/auth/register").hasAuthority("ADMIN")
                 .requestMatchers("/api/auth/login") // whitelist
                 .permitAll()
                 .anyRequest() // but any request should be authenticated

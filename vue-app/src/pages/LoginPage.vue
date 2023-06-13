@@ -18,7 +18,7 @@
             type="password"
             v-model.trim="User.password"
             class="login__input">
-        <div v-for="error in v$.User.password.$errors" :key="error.$uid" class="login__error__message"> {{error.$message}}</div>
+<!--        <div v-for="error in v$.User.password.$errors" :key="error.$uid" class="login__error__message"> {{error.$message}}</div>-->
         <button class="btn__auth">Login</button>
       </form>
     </div>
@@ -124,7 +124,7 @@ export default {
         }
         ,
         password:{
-          required,
+
           minLength:helpers.withMessage("Your password must be more than 4 characters",minLength(4)),
           maxLength:helpers.withMessage("Your password must be less than 128 characters",maxLength(128))
 

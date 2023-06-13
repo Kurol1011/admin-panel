@@ -8,6 +8,7 @@ import kz.management.adminpanel.model.enums.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -49,6 +50,9 @@ public class User {
     @Column(name="role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Respondent> respondents;
 
     public User() {
     }
@@ -117,5 +121,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<Respondent> getRespondents() {
+        return respondents;
+    }
+
+    public void setRespondents(List<Respondent> respondents) {
+        this.respondents = respondents;
     }
 }
