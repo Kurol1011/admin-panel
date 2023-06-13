@@ -7,6 +7,7 @@ import UserPage from "@/pages/UserPage";
 import RegisterPage from "@/pages/RegisterPage";
 import DevPage from "@/pages/DevPage";
 import ManagerPage from "@/pages/ManagerPage";
+import RespondentPage from "@/pages/RespondentPage";
 
 const routes = [
 
@@ -64,6 +65,14 @@ const routes = [
         meta: {
             requiresAuth: true,
             allowedRoles: ['MANAGER']
+        }
+    },
+    {
+        path: '/respondent',
+        component: RespondentPage,
+        meta: {
+            requiresAuth: true,
+            allowedRoles: ['MANAGER','ADMIN','DEV','USER']
         }
     }
 

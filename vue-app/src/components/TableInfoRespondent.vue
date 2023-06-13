@@ -8,9 +8,9 @@
         <th>Date</th>
       </tr>
       <table-item
-          v-for="userItem in users"
-          :user="userItem"
-          :key="userItem.id"
+          v-for="respondentItem in respondents"
+          :respondent="respondentItem"
+          :key="respondentItem.id"
       />
     </table>
   </div>

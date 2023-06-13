@@ -12,6 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -58,8 +61,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public RespondentDTO convertToRespondentDTO(Respondent respondent) {
+        RespondentDTO respondentDTO = new RespondentDTO();
+        respondentDTO.setId(respondent.getId());
+        respondentDTO.setFullName(respondent.getFullName());
+        respondentDTO.setAmountComputers(respondent.getAmountComputers());
+        respondentDTO.setAmountEmployee(respondent.getAmountEmployee());
+        respondentDTO.setDate(respondent.getDate());
+        return respondentDTO;
+    }
+
+    @Override
     public void createFormInfoComputers(RespondentDTO respondentDTO) {
         Respondent respondent = convertToRespondent(respondentDTO);
         respondentRepository.save(respondent);
+    }
+
+    @Override
+    public List<RespondentDTO> getAllRespondents() {
+       return respondentRepository.findAll().stream().map(r -> convertToRespondentDTO(r)).collect(Collectors.toList());
     }
 }

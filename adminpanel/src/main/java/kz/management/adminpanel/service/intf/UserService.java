@@ -5,11 +5,17 @@ import kz.management.adminpanel.dto.UserDTO;
 import kz.management.adminpanel.model.Respondent;
 import kz.management.adminpanel.model.User;
 
+import java.util.List;
+
 public interface UserService {
     User getCurrentUser();
     UserDTO convertToUserDTO(User user);
 
     Respondent convertToRespondent(RespondentDTO respondentDTO);
 
+    RespondentDTO convertToRespondentDTO(Respondent respondent);
+
     void createFormInfoComputers(RespondentDTO respondentDTO);
+
+    List<RespondentDTO> getAllRespondents();
 }
