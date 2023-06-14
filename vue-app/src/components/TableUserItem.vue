@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 
-  td{
-    border: 1px solid silver;
-  }
+td{
+  border: 1px solid silver;
+}
 </style>

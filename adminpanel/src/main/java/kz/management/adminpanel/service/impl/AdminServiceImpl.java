@@ -1,5 +1,6 @@
 package kz.management.adminpanel.service.impl;
 
+import kz.management.adminpanel.dto.UserDTO;
 import kz.management.adminpanel.model.User;
 import kz.management.adminpanel.repo.UserRepository;
 import kz.management.adminpanel.security.RegisterRequest;
@@ -37,6 +38,7 @@ public class AdminServiceImpl implements AdminService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
 
     @Override
     public void deleteAccount() {

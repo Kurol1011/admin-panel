@@ -19,14 +19,14 @@ export default {
     }
   },
   async created(){
-    axios.get('http://localhost:8081/users',{
+    await axios.get('http://localhost:8081/users',{
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
     })
         .then(response => {
           this.allUsers = response.data;
-          console.log('success')
+          console.log(response.data)
         })
         //.then(response => console.log(response.data))
         .catch(error => console.log(error))

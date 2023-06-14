@@ -3,8 +3,11 @@ package kz.management.adminpanel.controller;
 import kz.management.adminpanel.dto.RespondentDTO;
 import kz.management.adminpanel.dto.UserDTO;
 import kz.management.adminpanel.service.intf.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,4 +31,10 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllRespondents());
     }
 
+    @PostMapping("/create-respondent-post")
+    public ResponseEntity<?> createRespondentPost(@RequestBody RespondentDTO respondentDTO){
+        System.out.println(respondentDTO.toString());
+        userService.createRespondentPost(respondentDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 }

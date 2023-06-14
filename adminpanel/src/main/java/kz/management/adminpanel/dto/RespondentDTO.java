@@ -60,4 +60,15 @@ public class RespondentDTO {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "RespondentDTO{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", amountComputers=" + amountComputers +
+                ", amountEmployee=" + amountEmployee +
+                ", date=" + date +
+                '}';
+    }
 }

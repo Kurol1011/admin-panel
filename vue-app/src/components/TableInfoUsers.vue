@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import tableUserItem from "@/components/TableUserItem";
+import tableItem from "@/components/TableUserItem";
 export default {
-  components: {tableUserItem},
+  components: {tableItem},
   props:{
     users:{
       type:Array,

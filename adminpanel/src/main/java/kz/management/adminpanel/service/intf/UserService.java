@@ -9,13 +9,14 @@ import java.util.List;
 
 public interface UserService {
     User getCurrentUser();
+
     UserDTO convertToUserDTO(User user);
 
     Respondent convertToRespondent(RespondentDTO respondentDTO);
 
     RespondentDTO convertToRespondentDTO(Respondent respondent);
 
-    void createFormInfoComputers(RespondentDTO respondentDTO);
+    void createRespondentPost(RespondentDTO respondentDTO);
 
     List<RespondentDTO> getAllRespondents();
 }

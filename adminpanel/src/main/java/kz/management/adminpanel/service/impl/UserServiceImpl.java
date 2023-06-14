@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(user.getUsername()).orElseThrow(()->new RuntimeException("user not found!")); //TODO new ClientIsNotFoundException("Client not found!")
     }
 
+
     @Override
     public UserDTO convertToUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
@@ -72,13 +73,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createFormInfoComputers(RespondentDTO respondentDTO) {
+    public void createRespondentPost(RespondentDTO respondentDTO) {
+        System.out.println(respondentDTO.toString());
         Respondent respondent = convertToRespondent(respondentDTO);
         respondentRepository.save(respondent);
     }
 
     @Override
     public List<RespondentDTO> getAllRespondents() {
-       return respondentRepository.findAll().stream().map(r -> convertToRespondentDTO(r)).collect(Collectors.toList());
+        return respondentRepository.findAll().stream().map(r -> convertToRespondentDTO(r)).collect(Collectors.toList());
     }
 }
