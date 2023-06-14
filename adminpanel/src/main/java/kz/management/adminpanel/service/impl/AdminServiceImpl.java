@@ -1,6 +1,7 @@
 package kz.management.adminpanel.service.impl;
 
 import kz.management.adminpanel.dto.UserDTO;
+import kz.management.adminpanel.exception.UserIsAlreadyExistsException;
 import kz.management.adminpanel.model.User;
 import kz.management.adminpanel.repo.UserRepository;
 import kz.management.adminpanel.security.RegisterRequest;
@@ -23,6 +24,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void createUser(RegisterRequest request) {
+
+        if(userRepository.existsByEmail(request.getEmail())){
+            throw new UserIsAlreadyExistsException("User with this email is already exists");
+        }
+
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());

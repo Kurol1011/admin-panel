@@ -14,7 +14,7 @@ export default {
   components: {TableInfoRespondent},
   data(){
     return{
-      respondents:[{id:5,fullName:'John Makalister',amountComputers:25,amountEmployee:24,date:'02/02/2022',formAction:"/awdw"}]
+      respondents:[]
     }
   },
   async created(){

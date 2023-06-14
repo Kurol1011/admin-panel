@@ -88,10 +88,11 @@ export default {
       })
           .then(response =>{
             location.reload();
-            console.log(response.data);
           })
           .catch(error => {
-            console.log(error);
+            location.reload();
+            console.log(error.response.data);
+            alert(error.response.data.message);
           });
     },
     removeRespondentPost(respondent) {
@@ -107,7 +108,9 @@ export default {
             console.log(response.data);
           })
           .catch(error => {
-            console.log(error);
+            location.reload();
+            console.log(error.response.data);
+            alert(error.response.data.message);
           });
     },
     createRespondentPost(){
@@ -121,11 +124,11 @@ export default {
       })
           .then(response =>{
             location.reload();
-            console.log(response.data);
           })
           .catch(error => {
-            console.log(this.apiURLCreate);
-            console.log(error);
+            location.reload();
+            console.log(error.response.data);
+            alert(error.response.data.message);
           });
     }
   }

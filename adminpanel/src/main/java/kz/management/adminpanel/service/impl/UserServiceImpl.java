@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateRespondentPost(RespondentDTO respondentDTO) {
-        Respondent respondent = respondentRepository.findById(respondentDTO.getId()).get();
+        Respondent respondent = respondentRepository.findById(respondentDTO.getId()).orElseThrow(()->new RespondentPostNotFound("respondent post not found!"));
         respondent.setAmountComputers(respondentDTO.getAmountComputers());
         respondent.setAmountEmployee(respondentDTO.getAmountEmployee());
         respondent.setDate(respondentDTO.getDate());
@@ -105,6 +105,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getOwnerRespondentPost(RespondentDTO respondentDTO) {
-        return respondentRepository.findById(respondentDTO.getId()).get().getUser();
+        User user = respondentRepository.findById(respondentDTO.getId()).orElseThrow(() -> new RespondentPostNotFound("respondent post not found!")).getUser();
+        return user;
     }
 }

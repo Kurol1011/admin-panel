@@ -122,7 +122,8 @@ export default {
             this.hasAuthSuccess = true;
           })
           .catch(error => {
-            console.log(error);
+            alert(error.response.data.message);
+            console.log(error.response.data);
             this.hasAuthError = true;
           });
     },

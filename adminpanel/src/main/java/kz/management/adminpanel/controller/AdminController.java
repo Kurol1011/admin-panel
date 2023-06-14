@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @PostMapping("/create-user")
-    public ResponseEntity<?> createUser(@RequestBody RegisterRequest request){
+    public ResponseEntity<?> createUser(@RequestBody RegisterRequest request){ //todo validate request (@valid)
         adminService.createUser(request);
         return ResponseEntity.ok(HttpStatus.OK);
     }

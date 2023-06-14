@@ -2,6 +2,7 @@ package kz.management.adminpanel.controller;
 
 import kz.management.adminpanel.dto.RespondentDTO;
 import kz.management.adminpanel.dto.UserDTO;
+import kz.management.adminpanel.exception.RespondentPostNotFound;
 import kz.management.adminpanel.service.intf.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class UserController {
     @PostMapping("/remove-respondent-post")
     public ResponseEntity<?> removeRespondentPost(@RequestBody RespondentDTO respondentDTO){
         if(userService.getCurrentUser().getId() != userService.getOwnerRespondentPost(respondentDTO).getId()) {
-            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+            throw new RespondentPostNotFound("this respondent post is not yours!");
         }
         userService.removeRespondentPost(respondentDTO);
         return ResponseEntity.ok(HttpStatus.OK);
@@ -49,7 +50,7 @@ public class UserController {
     @PostMapping("/update-respondent-post")
     public ResponseEntity<?> updateRespondentPost(@RequestBody RespondentDTO respondentDTO){
         if(userService.getCurrentUser().getId() != userService.getOwnerRespondentPost(respondentDTO).getId()) {
-            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+            throw new RespondentPostNotFound("this respondent post is not yours!");
         }
         userService.updateRespondentPost(respondentDTO);
         return ResponseEntity.ok(HttpStatus.OK);

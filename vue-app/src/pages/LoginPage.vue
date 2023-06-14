@@ -4,17 +4,20 @@
 <!--      <h1>{{$store.getters['auth_data/isAuthenticated']}}</h1>-->
       <h1>{{message}}</h1>
     </div>
-    <button @click="getHello">Press</button>
     <div class="container__login">
-      <form @submit.prevent="sendLoginRequest()" class="login__form__container">
+      <form @submit.prevent="sendLoginRequest()" class="login__form__container" autocomplete="on">
         <label for="email" class="login__label">Email:</label>
         <input
+            id="email"
+            autocomplete="email"
             type="text"
             v-model.trim="User.email"
             class="login__input">
         <div v-for="error in v$.User.email.$errors" :key="error.$uid" class="login__error__message">{{error.$message}}</div>
         <label for="password" class="login__label">Password:</label>
         <input
+            id="password"
+            autocomplete="email"
             type="password"
             v-model.trim="User.password"
             class="login__input">
@@ -105,7 +108,8 @@ export default {
             }
           })
           .catch(error =>{
-            console.log(error);
+            console.log(error.response.data);
+            alert(error.response.data.message);
           })
     }
   },
