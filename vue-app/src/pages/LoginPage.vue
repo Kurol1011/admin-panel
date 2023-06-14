@@ -54,7 +54,6 @@ export default {
         }
       })
           .then(response => this.message = response.data)
-          //.then(response => console.log(response.data))
           .catch(error => console.log(error))
     },
     async sendLoginRequest(){

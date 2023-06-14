@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="respondent.fullName">
+          <input type="text" v-model="respondent.fullName" readonly disabled>
         </td>
         <td>
           <input type="number" v-model="respondent.amountComputers">
@@ -27,7 +27,7 @@
       </tr>
       <tr v-for="respondentItem in respondents" :key="respondentItem.id">
         <td>
-          <input type="text" v-model="respondentItem.fullName">
+          <input type="text" v-model="respondentItem.fullName" readonly disabled>
         </td>
         <td>
           <input type="number" v-model="respondentItem.amountComputers">
@@ -39,7 +39,10 @@
           <input type="date" v-model="respondentItem.date">
         </td>
         <td>
-          <button type="submit" @click="submitForm(respondentItem)">Update</button>
+          <button type="submit" @click="updateRespondentPost(respondentItem)">Update</button>
+        </td>
+        <td>
+          <button type="submit" @click="removeRespondentPost(respondentItem)">Delete</button>
         </td>
       </tr>
 
@@ -59,8 +62,11 @@ export default {
   },
   data(){
     return{
-
-      apiUrlCreate:'http://localhost:8081/create-respondent-post',
+      apiURL:'http://localhost:8081',
+      apiURLCreate: this.apiURL + '/create-respondent-post',
+      apiURLUpdate: this.apiURL + '/update-respondent-post',
+      apiURLDelete: this.apiURL + '/remove-respondent-post',
+      apiURLInfoUser: this.apiURL + '/info',
       respondent:{
         id:null,
         fullName:'',
@@ -72,8 +78,24 @@ export default {
   }
   ,
   methods: {
-    submitForm(respondent) {
-      axios.post(this.apiUrl, respondent,{
+    updateRespondentPost(respondent) {
+      axios.post(this.apiURLUpdate, respondent,{
+        headers: {
+          //this.$store.state.auth_data.authHeaders
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        }
+      })
+          .then(response =>{
+            location.reload();
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    },
+    removeRespondentPost(respondent) {
+      axios.post(this.apiURLDelete, respondent,{
         headers: {
           //this.$store.state.auth_data.authHeaders
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -90,7 +112,7 @@ export default {
     },
     createRespondentPost(){
       console.log(this.respondent);
-      axios.post(this.apiUrlCreate, this.respondent,{
+      axios.post(this.apiURLCreate, this.respondent,{
         headers: {
           //this.$store.state.auth_data.authHeaders
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -102,13 +124,27 @@ export default {
             console.log(response.data);
           })
           .catch(error => {
+            console.log(this.apiURLCreate);
             console.log(error);
           });
     }
   }
   ,
-  created() {
-    axios.get("")
+  beforeCreate() {
+    this.apiURL= 'http://localhost:8081';
+  }
+  ,
+ async created() {
+    await axios.get(this.apiURLInfoUser,{
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    }).then(response => {
+      this.respondent.fullName = response.data.firstName + ' ' + response.data.lastName;
+    })
+        .catch(error=>{
+          console.log(error);
+        })
   }
 
 }

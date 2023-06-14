@@ -19,4 +19,10 @@ public interface UserService {
     void createRespondentPost(RespondentDTO respondentDTO);
 
     List<RespondentDTO> getAllRespondents();
+
+    void removeRespondentPost(RespondentDTO respondentDTO);
+
+    void updateRespondentPost(RespondentDTO respondentDTO);
+
+    User getOwnerRespondentPost(RespondentDTO respondentDTO);
 }

@@ -33,8 +33,25 @@ public class UserController {
 
     @PostMapping("/create-respondent-post")
     public ResponseEntity<?> createRespondentPost(@RequestBody RespondentDTO respondentDTO){
-        System.out.println(respondentDTO.toString());
         userService.createRespondentPost(respondentDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/remove-respondent-post")
+    public ResponseEntity<?> removeRespondentPost(@RequestBody RespondentDTO respondentDTO){
+        if(userService.getCurrentUser().getId() != userService.getOwnerRespondentPost(respondentDTO).getId()) {
+            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+        }
+        userService.removeRespondentPost(respondentDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/update-respondent-post")
+    public ResponseEntity<?> updateRespondentPost(@RequestBody RespondentDTO respondentDTO){
+        if(userService.getCurrentUser().getId() != userService.getOwnerRespondentPost(respondentDTO).getId()) {
+            return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+        }
+        userService.updateRespondentPost(respondentDTO);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

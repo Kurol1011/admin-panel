@@ -1,7 +1,10 @@
 package kz.management.adminpanel.service.impl;
 
+import jakarta.transaction.Transactional;
 import kz.management.adminpanel.dto.RespondentDTO;
 import kz.management.adminpanel.dto.UserDTO;
+import kz.management.adminpanel.exception.RespondentPostNotFound;
+import kz.management.adminpanel.exception.UserNotFoundException;
 import kz.management.adminpanel.model.Respondent;
 import kz.management.adminpanel.model.User;
 import kz.management.adminpanel.repo.RespondentRepository;
@@ -34,12 +37,14 @@ public class UserServiceImpl implements UserService {
         }
         AuthUserDetails user = (AuthUserDetails) authentication.getPrincipal();
 
-        return userRepository.findByEmail(user.getUsername()).orElseThrow(()->new RuntimeException("user not found!")); //TODO new ClientIsNotFoundException("Client not found!")
+        return userRepository.findByEmail(user.getUsername()).orElseThrow(()->new UserNotFoundException("user not found by email!"));
     }
 
 
     @Override
+    //@Transactional todo is necessary?
     public UserDTO convertToUserDTO(User user) {
+        userRepository.findByEmail(user.getEmail()).orElseThrow(()->new UserNotFoundException("user not found by email!"));
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setFirstName(user.getFirstName());
@@ -63,6 +68,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public RespondentDTO convertToRespondentDTO(Respondent respondent) {
+        respondentRepository.findById(respondent.getId()).orElseThrow(() -> new RespondentPostNotFound("respondent post not found by id!"));
         RespondentDTO respondentDTO = new RespondentDTO();
         respondentDTO.setId(respondent.getId());
         respondentDTO.setFullName(respondent.getFullName());
@@ -74,7 +80,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createRespondentPost(RespondentDTO respondentDTO) {
-        System.out.println(respondentDTO.toString());
         Respondent respondent = convertToRespondent(respondentDTO);
         respondentRepository.save(respondent);
     }
@@ -82,5 +87,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<RespondentDTO> getAllRespondents() {
         return respondentRepository.findAll().stream().map(r -> convertToRespondentDTO(r)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void removeRespondentPost(RespondentDTO respondentDTO) {
+        respondentRepository.deleteById(respondentDTO.getId());
+    }
+
+    @Override
+    public void updateRespondentPost(RespondentDTO respondentDTO) {
+        Respondent respondent = respondentRepository.findById(respondentDTO.getId()).get();
+        respondent.setAmountComputers(respondentDTO.getAmountComputers());
+        respondent.setAmountEmployee(respondentDTO.getAmountEmployee());
+        respondent.setDate(respondentDTO.getDate());
+        respondentRepository.save(respondent);
+    }
+
+    @Override
+    public User getOwnerRespondentPost(RespondentDTO respondentDTO) {
+        return respondentRepository.findById(respondentDTO.getId()).get().getUser();
     }
 }
