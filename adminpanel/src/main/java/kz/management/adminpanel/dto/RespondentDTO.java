@@ -10,15 +10,18 @@ public class RespondentDTO {
     private int amountEmployee;
     private Date date;
 
+    private long ownerId;
+
     public RespondentDTO() {
     }
 
-    public RespondentDTO(long id, String fullName, int amountComputers, int amountEmployee, Date date) {
+    public RespondentDTO(long id, String fullName, int amountComputers, int amountEmployee, Date date, long ownerId) {
         this.id = id;
         this.fullName = fullName;
         this.amountComputers = amountComputers;
         this.amountEmployee = amountEmployee;
         this.date = date;
+        this.ownerId = ownerId;
     }
 
     public long getId() {
@@ -61,6 +64,14 @@ public class RespondentDTO {
         this.date = date;
     }
 
+    public long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
+    }
+
     @Override
     public String toString() {
         return "RespondentDTO{" +
@@ -69,6 +80,7 @@ public class RespondentDTO {
                 ", amountComputers=" + amountComputers +
                 ", amountEmployee=" + amountEmployee +
                 ", date=" + date +
+                ", ownerId=" + ownerId +
                 '}';
     }
 }

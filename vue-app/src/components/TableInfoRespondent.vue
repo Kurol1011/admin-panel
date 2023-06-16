@@ -3,7 +3,7 @@
     <table class="table__respondents">
 
       <tr>
-        <th>Full name</th>
+        <th>Respondent</th>
         <th>Number of computers</th>
         <th>Number of employees</th>
         <th>Date</th>
@@ -73,15 +73,14 @@ export default {
         fullName:'',
         amountComputers:0,
         amountEmployee:0,
-        date:null
+        date:null,
+        ownerId:null
       },
     }
   }
   ,
   methods: {
     updateRespondentPost(respondent) {
-      console.log(respondent.id);
-      console.log(this.$store.getters['auth_data/userId']);
       axios.post(this.apiURLUpdate, respondent,{
         headers: {
           //this.$store.state.auth_data.authHeaders

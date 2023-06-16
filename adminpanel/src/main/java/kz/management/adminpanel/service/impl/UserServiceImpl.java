@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
         respondentDTO.setAmountComputers(respondent.getAmountComputers());
         respondentDTO.setAmountEmployee(respondent.getAmountEmployee());
         respondentDTO.setDate(respondent.getDate());
+        respondentDTO.setOwnerId(respondent.getUser().getId());
         return respondentDTO;
     }
 

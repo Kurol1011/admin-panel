@@ -1,13 +1,13 @@
 <template>
   <div class="container__respondent">
-    <h1 class="respondent__page__title">Respondent page</h1>
+    <h1 class="respondent__page__title">Respondent posts page</h1>
     <input type="text" v-model="searchName" class="search__input__respondent__post" >
     <div class="container__respondent__page__filter">
     <button type="button" @click="sortByName" >Sort by name</button>
 
     <button type="button" @click="sortByDate">Sort by date</button>
 
-    <button type="button" @click="sortByAmountComputers">Sort by amount of computers</button>
+    <button type="button" @click="sortByAmountComputers" >Sort by amount of computers</button>
 
     <button type="button" @click="sortByAmountEmployee">Sort by amount od employee</button>
   </div>
