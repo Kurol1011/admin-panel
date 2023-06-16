@@ -17,7 +17,7 @@
         <label for="password" class="login__label">Password:</label>
         <input
             id="password"
-            autocomplete="email"
+            autocomplete="password"
             type="password"
             v-model.trim="User.password"
             class="login__input">

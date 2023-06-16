@@ -1,4 +1,6 @@
 <template>
+  <div class="container__admin__page">
+    <h1 class="container__admin__page__title">Admin page</h1>
   <div class="container__table">
     <table-info-users
     :users="allUsers"
@@ -6,6 +8,7 @@
     />
   </div>
   <router-link to="/register">Register new user</router-link>
+  </div>
 </template>
 
 <script>
@@ -29,7 +32,10 @@ export default {
           console.log(response.data)
         })
         //.then(response => console.log(response.data))
-        .catch(error => console.log(error))
+        .catch(error => {
+          alert(error.response.data.message);
+          console.log(error.response.data);
+        })
   }
 
 
@@ -42,5 +48,14 @@ export default {
   margin-top: 50px;
 }
 
+.container__admin__page{
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.container__admin__page__title{
+  text-align: center;
+}
 
 </style>

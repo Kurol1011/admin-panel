@@ -1,10 +1,12 @@
 package kz.management.adminpanel.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import kz.management.adminpanel.exception.UserDataException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +41,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername()) // username -- email -- subject
                 .setIssuedAt(new Date(System.currentTimeMillis())) // this will help to check expiration date is valid or not
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // token live - 60 min (1000 milli * 60milli = 60 sec)
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact(); // will generate and return a token
     }
@@ -68,6 +70,7 @@ public class JwtService {
                     .build()
                     .parseClaimsJws(token)
                     .getBody(); // get all claims from token
+
     }
 
     private Key getSignInKey() {

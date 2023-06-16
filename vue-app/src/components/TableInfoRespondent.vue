@@ -39,7 +39,7 @@
           <input type="date" v-model="respondentItem.date">
         </td>
         <td>
-          <button type="submit" @click="updateRespondentPost(respondentItem)">Update</button>
+          <button type="submit" @click="updateRespondentPost(respondentItem)"  > Update </button>
         </td>
         <td>
           <button type="submit" @click="removeRespondentPost(respondentItem)">Delete</button>
@@ -52,6 +52,7 @@
 
 <script>
 import axios from "axios";
+import store from "@/store";
 export default {
   components: {},
   props:{
@@ -79,6 +80,8 @@ export default {
   ,
   methods: {
     updateRespondentPost(respondent) {
+      console.log(respondent.id);
+      console.log(this.$store.getters['auth_data/userId']);
       axios.post(this.apiURLUpdate, respondent,{
         headers: {
           //this.$store.state.auth_data.authHeaders

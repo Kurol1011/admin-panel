@@ -18,6 +18,9 @@ export const authModule = {
         },
         userRole(state) {
             return state.user ? state.user.role : null;
+        },
+        userId(state){
+            return state.user ? state.user.id :null;
         }
     },
     namespaced: true
