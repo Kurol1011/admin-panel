@@ -2,7 +2,7 @@ version: '3'
 services:
   backend:
     container_name: backend-app-panel
-    build: kurol1011/adminpanelapp-backend
+    image: kurol1011/adminpanelapp-backend
     ports:
       - "8081:8081"
     depends_on:
@@ -12,12 +12,12 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=joinIsDificult558
+      - POSTGRES_PASSWORD=joinIsDificult558
+      - POSTGRES_USER=postgres
       - POSTGRES_DB=admin_panel_db
   frontend:
     container_name: front-app-panel
-    build: kurol1011/adminpanelapp-frontend
+    image: kurol1011/adminpanelapp-frontend
     ports:
       - "8080:8080"
     depends_on:
