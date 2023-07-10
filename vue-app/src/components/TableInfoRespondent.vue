@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="respondent.fullName" readonly disabled>
+          <input   type="text" v-model="respondent.fullName" readonly disabled>
         </td>
         <td>
           <input type="number" v-model="respondent.amountComputers">
@@ -22,7 +22,7 @@
           <input type="date" v-model="respondent.date">
         </td>
         <td>
-          <button type="submit" @click="createRespondentPost()">Save</button>
+          <button class="savebtn" type="submit" @click="createRespondentPost()">Save</button>
         </td>
       </tr>
       <tr v-for="respondentItem in respondents" :key="respondentItem.id">
@@ -39,10 +39,10 @@
           <input type="date" v-model="respondentItem.date">
         </td>
         <td>
-          <button type="submit" @click="updateRespondentPost(respondentItem)"  > Update </button>
+          <button class="savebtn" type="submit" @click="updateRespondentPost(respondentItem)"  > Update </button>
         </td>
         <td>
-          <button type="submit" @click="removeRespondentPost(respondentItem)">Delete</button>
+          <button class="savebtn"  type="submit" @click="removeRespondentPost(respondentItem)">Delete</button>
         </td>
       </tr>
 
@@ -157,15 +157,33 @@ export default {
 
 <style scoped>
 .table__respondents{
-  border: 2px solid black ;
+  /* border: 2px solid black ; */
   width: 800px;
-  margin: 0 auto;
+  margin: 10px auto;
+  color: #fff;
 }
-td{
-  border: 1px solid silver;
-}
+
 input {
   width: 100%;
   box-sizing: border-box;
+}
+
+
+
+.savebtn {
+  margin: 10px auto 0;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: #928264;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .5s ease;
+  width: 100%;
+}
+
+.savebtn:hover {
+  background-color: #4caf50;
+  
 }
 </style>

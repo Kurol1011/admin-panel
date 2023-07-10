@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="part__register">Register</h1>
+  <div class="regmain">
+    <h1 class="part__register">Regsitration</h1>
     <div class="container__register">
       <form @submit.prevent="sendRegisterRequest()" class="register__form__container">
         <label for="firstName" class="register__label">First name:</label>
@@ -11,20 +11,20 @@
         <input type="text" class="register__input" v-model="userRegister.lastName">
         <div v-for="error in v$.userRegister.lastName.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
-        <label for="lastName" class="register__label">Date Of birth:</label>
+        <label for="lastName" class="register__label2">Date Of birth:</label>
         <input type="date" class="register__input" v-model="userRegister.dateOfBirth">
         <div v-for="error in v$.userRegister.dateOfBirth.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
-        <label for="email" class="register__label">Email:</label>
+        <label for="email" class="register__label3">Email:</label>
         <input type="text" class="register__input" v-model="userRegister.email">
         <div v-for="error in v$.userRegister.email.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
-        <label for="password" class="register__label">Password:</label>
+        <label for="password" class="register__label4">Password:</label>
         <input type="password" class="register__input" v-model="userRegister.password">
         <div v-for="error in v$.userRegister.password.$errors" :key="error.$uid" class="register__error__message">{{error.$message}}</div>
 
-<!--        <input type="text" class="register__input" v-model="userRegister.role">-->
-        <label for="password" class="register__label">Role:</label>
+
+        <label for="password" class="register__label5">Role:</label>
         <select class="register__input" v-model="userRegister.role">
           <option
               v-for="item in items"
@@ -132,10 +132,14 @@ export default {
 </script>
 
 <style>
+
+
 .register__form__container{
   width:80%;
+  
+
 }
-.auth__status__block{
+/* .auth__status__block{
   width:200px;
   height:70px;
   position: absolute;
@@ -159,8 +163,8 @@ export default {
   font-weight: bold;
   background-color: #a7d9b6;
   box-shadow: 3px 3px 3px black;
-}
-
+} */
+/* 
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
@@ -173,48 +177,111 @@ export default {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+} */
+.regmain{
+  background: linear-gradient(90deg, #ee5c87, #f1a4b5, #d587b3);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
-
 .part__register{
+  color: #fff;
   text-align: center;
   margin: 10px 0;
   font-size: 29px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
+  
 }
 
 .container__register{
-  display: flex;
-  width: 90%;
+  width: 20%;
+  
+
   padding:20px;
-  border: 2px solid #0e0b54;
-  border-radius: 20px;
   margin:10px auto;
-  display: flex;
+
+  border: 2px solid #0e0b54;
+  border-radius: 20px; 
   box-shadow: 2px 2px 7px black;
+
   flex-direction: column;
   align-items: center;
 }
 
 .register__label{
+  color: #fff;
   display: inline-block;
-  margin:15px 0 5px 30%;
+  
+  margin: 10px;
+  margin-right: 32px;
+  
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+}
+.register__label2{
+  display: inline-block;
+  color: #fff;
+ 
+
+  margin: 10px;
+  
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+}
+.register__label3{
+  display: inline-block;
+  color: #fff;
+ 
+
+  margin: 10px;
+  margin-right: 77px;
+  
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+}
+.register__label4{
+  display: inline-block;
+  color: #fff;
+
+  margin: 10px;
+  margin-right: 35px;
+  
+  font-size: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+}
+.register__label5{
+  display: inline-block;
+  color: #fff;
+ 
+
+  margin: 10px;
+  margin-right: 85px;
+  
   font-size: 20px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
 }
 
 .register__input{
-  display: block;
+  display: inline-block;
+ 
+
   border: 2px solid #565454;
   border-radius: 20px;
   padding:5px 10px;
-  width:250px;
-  margin:10px auto 0;
+  line-height: 25px;
+  width:130px;
+
   font-size: 14px;
   font-family: 'Ubuntu', sans-serif;
   font-weight:700;
   color: #0e0b54;
+   background: transparent;
 }
 
 .register__error__message{
@@ -230,8 +297,9 @@ export default {
 .btn__auth{
   color: #565454;
   padding: 5px 10px;
-  background-color: white;
+  background-color: rgb(141, 247, 127);
   margin: 10px auto;
+  margin-right: 40px;
   font-size: 17px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: normal;

@@ -1,7 +1,8 @@
 <template>
+<div class="respmain">
   <div class="container__respondent">
     <h1 class="respondent__page__title">Respondent posts page</h1>
-    <input type="text" v-model="searchName" class="search__input__respondent__post" >
+    <input type="text" v-model="searchName" class="search__input__respondent__post" placeholder="INPUT YOUR REQUEST" >
     <div class="container__respondent__page__filter">
     <button type="button" @click="sortByName" >Sort by name</button>
 
@@ -15,6 +16,7 @@
         :respondents="searchByName"
     />
 
+  </div>
   </div>
 </template>
 
@@ -68,13 +70,22 @@ export default {
 </script>
 
 <style scoped>
+
+.respmain{
+  background: linear-gradient(90deg, #ee5c87, #f1a4b5, #d587b3);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
 .container__respondent{
   width:80%;
   margin: 0 auto;
   padding:10px;
+ 
 }
 
 .respondent__page__title{
+  color: #fff;
   text-align: center;
 }
 
@@ -84,31 +95,32 @@ export default {
   margin: 10px auto;
   padding: 5px 10px;
   display: block;
+  
+  background: transparent;
 }
 
 .container__respondent__page__filter{
-  width:70%;
+  width:50%;
   margin: 10px auto;
   display: flex;
   justify-content: center;
   grid-gap: 5px;
-  border: 2px solid seagreen;
-  border-radius: 5px;
   padding:10px;
 }
 
 .container__respondent__page__filter button{
   border: 2px solid #0e0b54;
   border-radius: 5px;
-  background-color: white;
-  color: #0e0b54;
+  background: transparent;
+  color: #fff;
   font-family: Arial;
   font-size: 14px;
   font-weight: bold;
+
 }
 
 .container__respondent__page__filter button:hover{
-  background-color: #a7d9b6;
+  background-color: #e0cb09;
   cursor: pointer;
 }
 

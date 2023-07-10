@@ -43,18 +43,53 @@ export default {
 </script>
 
 <style scoped>
+
+
 .container__table{
   width: 100%;
   margin-top: 50px;
 }
 
 .container__admin__page{
-  width: 80%;
+  position: relative;
+  width: 100%;
   margin: 0 auto;
   padding: 10px;
+  background: linear-gradient(81deg, #ddb35f, #7409c7);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  
+}
+
+
+.container__admin__page a {
+  position: absolute;
+  display: inline-block;
+  top: 550px;
+  right: 550px;
+
+  text-decoration: none;
+
+
+  color: #fff;
+  background: transparent;
+  text-transform: uppercase;
+
+
+  padding: 20px;
+
+  border-radius: 10px;
+ 
+}
+.container__admin__page a:hover {
+   /* color: rgb(8, 198, 231); */
+   transition: 0.6s;
+   background: #c70968;
 }
 
 .container__admin__page__title{
+  color: #fff;
   text-align: center;
 }
 

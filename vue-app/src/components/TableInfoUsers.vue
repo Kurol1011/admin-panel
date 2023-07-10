@@ -33,8 +33,9 @@ export default {
 
 <style scoped>
 .table__users{
-  border: 2px solid black ;
+  /* border: 2px solid rgb(179, 14, 129) ; */
   width: 800px;
   margin: 0 auto;
+  color: #f5e7e7;
 }
 </style>

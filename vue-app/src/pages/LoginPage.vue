@@ -1,10 +1,14 @@
 <template>
+<div class="page-container">
   <div class="container">
     <div>
-<!--      <h1>{{$store.getters['auth_data/isAuthenticated']}}</h1>-->
+
       <h1>{{message}}</h1>
+      
     </div>
+  
     <div class="container__login">
+        <h2>Авторизация</h2>
       <form @submit.prevent="sendLoginRequest()" class="login__form__container" autocomplete="on">
         <label for="email" class="login__label">Email:</label>
         <input
@@ -21,10 +25,11 @@
             type="password"
             v-model.trim="User.password"
             class="login__input">
-<!--        <div v-for="error in v$.User.password.$errors" :key="error.$uid" class="login__error__message"> {{error.$message}}</div>-->
-        <button class="btn__auth">Login</button>
+
+        <button class="btn__auth">Войти</button>
       </form>
     </div>
+  </div>
   </div>
 </template>
 
@@ -141,50 +146,60 @@ export default {
 </script>
 
 <style scoped>
-.part__login{
-  text-align: center;
-  margin: 10px 0;
-  font-size: 29px;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
+.page-container {
+  position: relative;
+  background-image: linear-gradient(to bottom, #2980b9, #6dd5fa);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container__login{
+h2 {
+  text-align: center;
+  margin-right: 40px;
+  margin-bottom: 20px;
+}
+
+.container {
   display: flex;
-  width: 30%;
-  padding:20px;
-  border: 2px solid #0e0b54;
-  border-radius: 20px;
-  margin:10px auto;
-  display: flex;
-  box-shadow: 2px 2px 7px black;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.container__login {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 60px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .login__form__container{
   width:80%
 }
 
-.login__label{
+label {
   display: block;
-  margin:15px 0 5px 30%;
-  font-size: 20px;
-  font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.login__label{
+  margin-bottom: 15px;
 }
 
 .login__input{
-  display: block;
-  border: 2px solid #565454;
-  border-radius: 20px;
-  padding:5px 10px;
-  width:90%;
-  margin:3px auto 0;
-  font-size: 14px;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight:700;
-  color: #0e0b54;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .login__error__message{
@@ -197,23 +212,19 @@ export default {
   text-align: center;
 }
 
-
-.btn__auth{
-  color: #565454;
-  padding: 5px 10px;
-  background-color: white;
-  margin: 10px auto;
-  font-size: 17px;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: normal;
-  box-shadow: 2px 2px 7px black;
-  display: block;
-}
-.btn__auth:hover{
-  color: white;
-  background-color: #565454;
+.btn__auth {
+  margin: 10px auto 0;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
   cursor: pointer;
+  transition: background-color .5s ease;
 }
 
+.btn__auth:hover {
+  background-color: #FFA500;
+}
 
 </style>
